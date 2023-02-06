@@ -9,3 +9,8 @@ print_r($_GET);
 echo "post:";
 print_r($_POST);
 echo "</pre>";
+
+
+echo "La tua email è <br>";
+
+echo "<strong>" . $_POST['email'] . "</strong>";

@@ -21,3 +21,9 @@
  - [php form w3school](https://www.w3schools.com/php/php_forms.asp)
 
 
+- [filter input](https://www.php.net/manual/en/function.filter-input.php)
+- [FILTER_TYPE](https://www.php.net/manual/en/filter.filters.php)
+
+
+
+curl http://localhost/corso_php_mysql_2223/form_in_php/log-in-response.php?email=sbagliata
