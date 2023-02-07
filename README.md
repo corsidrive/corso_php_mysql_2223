@@ -30,5 +30,5 @@ curl http://localhost/corso_php_mysql_2223/form_in_php/log-in-response.php?email
 
 ### Esercitazione Form di registrazione PHP
 
-[Indicazioni su GDrive](https://docs.google.com/spreadsheets/d/1jr3wJHDnlN8CNzZLlajIt4RCjY5-a68Ddsq-KBwYyb4/edit#gid=853668999)
+[Indicazioni su GDrive](https://docs.google.com/document/d/1BhIxn2iPE7wDeC9XsIIngQUCE5-YEo9LZZc6OqII6GU/edit?usp=sharing)
 
