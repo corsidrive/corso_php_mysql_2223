@@ -25,5 +25,10 @@
 - [FILTER_TYPE](https://www.php.net/manual/en/filter.filters.php)
 
 
-
 curl http://localhost/corso_php_mysql_2223/form_in_php/log-in-response.php?email=sbagliata
+
+
+### Esercitazione Form di registrazione PHP
+
+[Indicazioni su GDrive](https://docs.google.com/spreadsheets/d/1jr3wJHDnlN8CNzZLlajIt4RCjY5-a68Ddsq-KBwYyb4/edit#gid=853668999)
+
