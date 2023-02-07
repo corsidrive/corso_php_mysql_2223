@@ -27,3 +27,11 @@
 
 
 curl http://localhost/corso_php_mysql_2223/form_in_php/log-in-response.php?email=sbagliata
+
+https://www.w3schools.com/sql/sql_injection.asp
+https://github.com/minimaxir/big-list-of-naughty-strings
+
+## Estensioni per php
+
+PHP Intelephense
+https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client
