@@ -25,7 +25,7 @@
 - [FILTER_TYPE](https://www.php.net/manual/en/filter.filters.php)
 
 
-curl http://localhost/corso_php_mysql_2223/form_in_php/log-in-response.php?email=sbagliata
+curl http://localhost/corso_php_mysql_2223/form_in_php/log-in-response.php?6=sbagliata
 
 
 ### Esercitazione Form di registrazione PHP
@@ -41,3 +41,13 @@ https://github.com/minimaxir/big-list-of-naughty-strings
 
 PHP Intelephense
 https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client
+
+
+## esercitazione php 02
+
+Validazione e test
+
+Scrivere due classi *ValidateRequired* e *ValidateDate*
+
+- ValidateRequired campo obbligatorio, quindi non deve essere vuoto
+- ValidateDate stabilisce se la data inserita è una data esistente nel formato gg/mm/aaaa e restituisce false se non una data valida
