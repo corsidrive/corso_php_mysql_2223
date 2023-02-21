@@ -3,6 +3,7 @@
 
 class ValidateRequired implements Validable {
 
+
  public function isValid($value)
  {
     // '    '        => ''
@@ -17,4 +18,10 @@ class ValidateRequired implements Validable {
     return $valueWidoutSpace;    
     
  }
+
+ public function message()
+ {
+    return 'campo obbligatorio';
+ }
+
 }

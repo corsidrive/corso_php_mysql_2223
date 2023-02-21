@@ -1,6 +1,6 @@
 <?php 
 // ValidateRequired campo obbligatorio, quindi non deve essere vuoto
-// false
+
 require "./form_in_php/class/validator/ValidateRequired.php";
 
 
