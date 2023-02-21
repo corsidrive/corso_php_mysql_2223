@@ -1,9 +1,9 @@
 <?php
 
-class ValidateMail {
 
+class ValidateMail implements Validable {
 
-    public function isValid(string $email) : bool {
+    public function isValid(mixed $email) : bool {
         return filter_var($email,FILTER_VALIDATE_EMAIL);
     }
 }
