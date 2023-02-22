@@ -6,14 +6,14 @@ class ValidateDate implements Validable {
     {
         $sanitize = trim(strip_tags($value));
         $dt = DateTime::createFromFormat('d/m/Y',$sanitize);
-        
-       
-        // 33/09/75 !== 
-        
-        if($dt && $dt->format('d/m/Y') === $sanitize){
+        if($dt && $dt->format('d/m/Y') === $sanitize) {
+
             return $dt->format('d/m/Y');
+        
         }else{
+        
             return false;
+        
         };
     }
     
