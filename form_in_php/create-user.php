@@ -1,5 +1,17 @@
+<?php
+print_r($_SERVER['REQUEST_METHOD']);
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+  echo "dati inviati adesso li devo controllare";
+
+}else{
+  echo "l'utente deve ancora compilare, il form non devo fare nulla";
+}
+
+?>
+
 <!doctype html>
 <html lang="en">
+
 
 <head>
   <meta charset="utf-8">
@@ -21,24 +33,38 @@
       </div>
       <div class="col-sm-8">
 
-        <form class="mt-1 mt-md-5" action="register-user.php" method="POST">
+        <form class="mt-1 mt-md-5" action="create-user.php" method="POST">
 
           <div class="mb-3">
             <label for="first_name" class="form-label">nome</label>
             <input type="text" class="form-control" name="first_name" id="first_name">
+            <!-- todo: mettere  is-invalid -->
+            <div class="invalid-feedback">
+              errore
+            </div>
+
           </div>
 
           <div class="mb-3">
             <label for="last_name" class="form-label">cognome</label>
             <input type="text" class="form-control" name="last_name" id="last_name">
+            <div class="invalid-feedback">
+              errore
+            </div>
           </div>
           <div class="mb-3">
             <label for="birthday" class="form-label">data di nascita</label>
             <input type="date" class="form-control" name="birthday" id="birthday">
+            <div class="invalid-feedback">
+              errore
+            </div>
           </div>
           <div class="mb-3">
             <label for="birth_place" class="form-label">luogo di nascita</label>
             <input type="text" class="form-control" name="birth_place" id="birth_place">
+            <div class="invalid-feedback">
+              errore
+            </div>
           </div>
 
 
@@ -46,26 +72,29 @@
           <div class="mb-3">
             <span>Genere</span>
             <div class="form-check">
+              <!-- TODO: METTERE IS INVALID SU ENTRAME I GENERI -->
               <input class="form-check-input" type="radio" name="gender" id="gender_M">
               <label class="form-check-label" for="gender_M">
                 Maschile
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="gender" id="gender_F" checked>
+              <input class="form-check-input" type="radio" name="gender" id="gender_F" >
               <label class="form-check-label" for="gender_F">
                 Femminile
               </label>
-
+              <div class="invalid-feedback">errore</div>
             </div>
           </div>
           <div class="mb-3">
             <label for="username" class="form-label">Nome utente</label>
             <input type="text" class="form-control" name="username" id="username">
+            <div class="invalid-feedback">errore</div>
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" name="password" id="password">
+            <div class="invalid-feedback">errore</div>
           </div>
 
 
