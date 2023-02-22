@@ -1,7 +1,32 @@
 <?php
+
+require "./class/validator/Validable.php";
+require "./class/validator/ValidateRequired.php";
+
 print_r($_SERVER['REQUEST_METHOD']);
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
   echo "dati inviati adesso li devo controllare";
+
+  $validatorName =  new ValidateRequired();
+  $validatedName = $validatorName->isValid($_POST['first_name']);
+  $isValidNameClass = $validatorName->isValid($_POST['first_name']) ? '' : ' is-invalid';
+
+/*
+ * operatore ternario sotituisce questa if e l'assegnazione di  $isValidNameClass
+ * 
+  if($validatorName->isValid($_POST['first_name'])){
+    $isValidNameClass = '';
+  }else{
+    $isValidNameClass = 'is-invalid';
+  }
+*/
+
+
+
+  // come associo la validazione a un campo / input / controllo
+  // first_name -> required
+  // birthday -> required | validDate
+
 
 }else{
   echo "l'utente deve ancora compilare, il form non devo fare nulla";
@@ -37,11 +62,19 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
           <div class="mb-3">
             <label for="first_name" class="form-label">nome</label>
-            <input type="text" class="form-control" name="first_name" id="first_name">
+            <input type="text" class="form-control <?php echo $isValidNameClass ?>" name="first_name" id="first_name">
+           
             <!-- todo: mettere  is-invalid -->
-            <div class="invalid-feedback">
-              errore
-            </div>
+            <?php
+            if(!$validatedName){ ?>
+
+                <div class="invalid-feedback">
+                    il nome è obbligatorio
+                </div>
+            
+            <?php } ?>
+
+           
 
           </div>
 
