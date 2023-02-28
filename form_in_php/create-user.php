@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 
 require "./class/validator/Validable.php";
 require "./class/validator/ValidateRequired.php";
@@ -9,35 +10,21 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
   $validatorName =  new ValidateRequired();
   $validatedName = $validatorName->isValid($_POST['first_name']);
-  $isValidNameClass = $validatorName->isValid($_POST['first_name']) ? '' : ' is-invalid';
+  $isValidNameClass =  $validatorName->isValid($_POST['first_name']) ? '' : ' is-invalid';
+  
+ var_dump($_POST);
 
-/*
- * operatore ternario sotituisce questa if e l'assegnazione di  $isValidNameClass
- * 
-  if($validatorName->isValid($_POST['first_name'])){
+}
+
+/** Questo script viene  eseguito quando visualizzo per la  "prima" volta il FORM di registrazione */
+if($_SERVER['REQUEST_METHOD'] == 'GET'){
     $isValidNameClass = '';
-  }else{
-    $isValidNameClass = 'is-invalid';
-  }
-*/
-
-
-
-  // come associo la validazione a un campo / input / controllo
-  // first_name -> required
-  // birthday -> required | validDate
-
-
-}else{
-  echo "l'utente deve ancora compilare, il form non devo fare nulla";
 }
 
 ?>
 
 <!doctype html>
 <html lang="en">
-
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,7 +53,17 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
            
             <!-- todo: mettere  is-invalid -->
             <?php
-            if(!$validatedName){ ?>
+            // Caso 1
+            // GET isset($validatedName) false 
+            // first_name = 'roberto' => !$validatedName = 'roberto' | isset($validatedName) true && false
+            // POST isset($validatedName) true
+            
+            // Caso 2
+            // GET isset($validatedName) false 
+            // first_name = '' => $validatedName = false
+            // POST isset($validatedName) true && !false | isset($validatedName) true && true
+            
+            if(isset($validatedName) && !$validatedName){ ?>
 
                 <div class="invalid-feedback">
                     il nome è obbligatorio
