@@ -29,7 +29,6 @@ class ValidateRequired implements Validable {
 
     $strip_tag = strip_tags($value);
     $valueWidoutSpace = trim($strip_tag);
-    
     if($valueWidoutSpace == ''){
        $this->valid = false;
        return false;

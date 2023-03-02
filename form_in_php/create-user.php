@@ -1,6 +1,5 @@
 <?php
 
-//spegenre errori a livello di server e anche runtime(durante esecuzione) 
 //error_reporting(E_ALL); li vede tutti
 //error_reporting(0); li spegne tutti
 require "./class/validator/Validable.php";
@@ -13,12 +12,12 @@ $validatorName = new ValidateRequired('','Il nome è obblicatorio');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $validatedName = $validatorName->isValid($_POST['first_name']);
+
 }
 
 /** questo script viene eseguito quanod visualizzo per la prima volta il form */
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    //$validatedName = false; per non far scattare il warning oppure usare isset
-    $isValidNameClass = '';
+    
 }
 
 
@@ -52,15 +51,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         <label for="first_name" class="form-label">nome</label>
                         <input type="text" 
                             value="<?= $validatorName->getValue() ?>"
-                            class="form-control <?php !$validatorName->getValid() ? 'is-invalid':''  ?>" 
+                            class="form-control <?php echo !$validatorName->getValid() ? 'is-invalid':''  ?>" 
                             name="first_name" 
                             id="first_name"
                         >
                         <!-- mettere is-invalid -->
                         <?php
+                        
+                        
                         //GET isset($validatedName) prova a usare una variabile e se non esiste(false) non da warning
                         //POST isset($validatedName) in questo caso da true, nel nostro caso
-                        if ($validatorName->getValid()) { ?>
+                        if (!$validatorName->getValid()) { ?>
                             <div class="invalid-feedback">
                                 <?php echo $validatorName->getMessage() ?>
                             </div>
