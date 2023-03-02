@@ -5,53 +5,14 @@
 //error_reporting(0); li spegne tutti
 require "./class/validator/Validable.php";
 require "./class/validator/ValidateRequired.php";
-print_r($_POST);
-print_r($_SERVER['REQUEST_METHOD']);
+// print_r($_POST);
+
+$validatorName = new ValidateRequired('','Il nome è obblicatorio');
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    echo "dati inviati, controlla facendo validazione";
 
-
-
-    $validatorName = new ValidateRequired();
     $validatedName = $validatorName->isValid($_POST['first_name']);
-    //operatore ternario ? e : per scrivere if veloci e assegnazioni
-    $isValidNameClass = $validatorName->isValid($_POST['first_name']) ? '' : 'is-invalid';
-
-    $validatorLastName = new ValidateRequired();
-    $validatedLastName = $validatorLastName->isValid($_POST['last_name']);
-    $isValidLastNameClass = $validatorLastName->isValid($_POST['last_name']) ? '' : 'is-invalid';
-
-    $validatorBirthday = new ValidateRequired();
-    $validatedBirthday = $validatorBirthday->isValid($_POST['birthday']);
-    $isValidBirthday = $validatorBirthday->isValid($_POST['birthday']) ? '' : 'is-invalid';
-
-    $validatorBirthPlace = new ValidateRequired();
-    $validatedBirthPlace = $validatorBirthPlace->isValid($_POST['birth_place']);
-    $isValidBirthPlace = $validatorBirthPlace->isValid($_POST['birth_place']) ? '' : 'is-invalid';
-
-    $validatorGender = new ValidateRequired();
-    $validatedGender = $validatorGender->isValid($_POST['gender']);
-    $isValidGender = $validatorGender->isValid($_POST['gender']) ? '' : 'is-invalid';
-
-    $validatorUserName = new ValidateRequired();
-    $validatedUserName = $validatorUserName->isValid($_POST['username']);
-    $isValidUserName = $validatorUserName->isValid($_POST['username']) ? '' : 'is-invalid';
-
-    // $validatorUserName = new ValidateMail();
-    // $validatedUserName = $validatorUserName->isValid($_POST['username']);
-    // $isValidUserName = $validatorUserName->isValid($_POST['username']) ? '' : 'is-invalid';
-
-
-    $validatorPassword = new ValidateRequired();
-    $validatedPassword = $validatorPassword->isValid($_POST['password']);
-    $isValidPassword = $validatorPassword->isValid($_POST['password']) ? '' : 'is-invalid';
-
-    /* per i radio button dei gender
-    $validatorGender = new ValidateRequired();
-    var_dump(isset($_POST['gender']));
-    $_gender = !isset($_POST['gender']) ? '' : $_POST['gender']);
-    $validatorGender->isValid($_gender);*/
 }
 
 /** questo script viene eseguito quanod visualizzo per la prima volta il form */
@@ -83,20 +44,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         <section class="row">
             <div class="col-sm-3">
-
+                ciccio
             </div>
             <div class="col-sm-6">
                 <form class="mt-1 mt-md-5" action="create-user.php" method="post">
                     <div class="mb-3">
                         <label for="first_name" class="form-label">nome</label>
-                        <input type="text" value="<?= $_POST['first_name'] ?>" class="form-control <?php echo $isValidNameClass ?>" name="first_name" id="first_name">
+                        <input type="text" 
+                            value="<?= $validatorName->getValue() ?>"
+                            class="form-control <?php !$validatorName->getValid() ? 'is-invalid':''  ?>" 
+                            name="first_name" 
+                            id="first_name"
+                        >
                         <!-- mettere is-invalid -->
                         <?php
                         //GET isset($validatedName) prova a usare una variabile e se non esiste(false) non da warning
                         //POST isset($validatedName) in questo caso da true, nel nostro caso
-                        if (isset($validatedName) && !$validatedName) { ?>
+                        if ($validatorName->getValid()) { ?>
                             <div class="invalid-feedback">
-                                il nome è obbligatorio
+                                <?php echo $validatorName->getMessage() ?>
                             </div>
                         <?php
                         }
