@@ -1,9 +1,9 @@
 <?php
 /**
- * - Preservare il valore iniziale valido (e ripulito) del campo di testo
+ * - [x] Preservare il valore iniziale valido (e ripulito) del campo di testo
  * - visualizzare il messaggio di errore per il singolo campo
- *    - sapere se cè un errore **is valid()**
- *    - ripulire e controllare i valori (sicurezza)
+ *    - [x] sapere se cè un errore **is valid()**
+ *    - [x] ripulire e controllare i valori (sicurezza)
  *    - ogni validazione ha il suo messaggio di errore 
  *    - impostare la classe di bootstrap is-invalid
  *    
@@ -11,20 +11,48 @@
 
 class ValidateRequired implements Validable {
 
+ /** @var string rappresenta il valore immesso nel form ripulito */
+ private $value;
+ private $message ;
+ private $hasMessage;
+ /** se il valore è valido e se devo visualizzare il messaggio  */
+ private $valid;
+ 
+ public function __construct($default_velue='',$message='è obbligatorio') {
+   $this->value = $default_velue;
+   $this->valid = true;
+   $this->message = $message;
+ }
 
- public function isValid($value)
+ public function isValid($value) // ?
  {
-    // '    '        => ''
-    
-    // posso scrivere tutto in una riga trim(strip_tag($value))
+
     $strip_tag = strip_tags($value);
     $valueWidoutSpace = trim($strip_tag);
-    if($valueWidoutSpace == ''){
-        return false;
-    }
     
+    if($valueWidoutSpace == ''){
+       $this->valid = false;
+       return false;
+    }
+    $this->valid = true;
+    $this->value = $valueWidoutSpace;
     return $valueWidoutSpace;    
     
+ }
+
+ public function getValue()
+ {
+   return $this->value;
+ }
+
+ public function getMessage()
+ {
+   return $this->message;
+ }
+
+ public function getValid()
+ {
+   return $this->valid;
  }
 
  
