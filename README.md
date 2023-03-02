@@ -59,3 +59,8 @@ Scrivere due classi *ValidateRequired* e *ValidateDate*
 
 - Aggiungere la validazione del nome utente (*username*) deve essere una email corretta.
   per il momento username non è obbligatorio (se non trovate una soluzione per fare entrambe le cose)
+
+
+### Classe/ Pacchetto di validazione visto su github
+
+[https://github.com/rakit/validation](https://github.com/rakit/validation)
