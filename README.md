@@ -64,3 +64,12 @@ Scrivere due classi *ValidateRequired* e *ValidateDate*
 ### Classe/ Pacchetto di validazione visto su github
 
 [https://github.com/rakit/validation](https://github.com/rakit/validation)
+
+
+### Estensione per database
+```
+Name: MySQL
+Id: cweijan.vscode-mysql-client2
+Description: Database manager for MySQL/MariaDB, PostgreSQL, SQLite, Redis and ElasticSearch
+VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-mysql-client2
+```
