@@ -5,21 +5,30 @@
 require "./class/validator/Validable.php";
 require "./class/validator/ValidateRequired.php";
 require "./class/validator/ValidateDate.php";
+require "./class/validator/ValidateMail.php";
 print_r($_POST);
 
 $first_name = new ValidateRequired('','Il Nome è obblicatorio');
 $last_name  = new ValidateRequired('','Il Cognome è obblicatorio');
 $birtday  = new ValidateDate('','La data di nascità non è valida');
 $birth_place  = new ValidateRequired('','Il Luogo di nascita è obbligatorio');
-$gender  = new ValidateRequired('','Il Genere è obbligaztorio');
+$gender  = new ValidateRequired('','Il Genere è obbligatorio');
+
+$username_required  = new ValidateRequired('','Username è obbligaztorio');
+$username_email  = new ValidateMail('','Formato email non valido');
+
+$password  = new ValidateRequired('','Password è obbligatorio');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+    
     $first_name->isValid($_POST['first_name']);
     $last_name->isValid($_POST['last_name']);
     $birth_place->isValid($_POST['birth_place']);
     $gender->isValid($_POST['gender']);
-    
+    $username_email->isValid($_POST['username']);
+    $username_required->isValid($_POST['username']);
+    $password->isValid($_POST['password']);
+
     // Usato per il caso dei radio
     // $value = isset($_POST['gender']) ? $_POST['gender'] :'';
     // $gender->isValid($value);
@@ -100,11 +109,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label for="birth_place" class="form-label">luogo di nascita</label>
                         <input type="text" 
                                value="<?= $birth_place->getValue() ?>"
-                               class="form-control <?php echo $birth_place->getValid() ? 'is-invalid':'' ?>" 
+                               class="form-control <?php echo !$birth_place->getValid() ? 'is-invalid':'' ?>" 
                                name="birth_place" 
                                id="birth_place"
                                >
-                        <?php if($birth_place->getValid()):?>
+                        <?php if(!$birth_place->getValid()):?>
                             <div class="invalid-feedback">
                                 <?php echo $birth_place->getMessage() ?>  
                             </div>
@@ -127,28 +136,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         
                     </div>
                     <div class="mb-3">
-                        <label for="username" class="form-label">nome utente</label>
-                        <input type="text" class="form-control <?php echo $isValidUserName ?>" name="username" id="username">
+                        <label for="username" class="form-label">Nome Utente / EMAIL</label>
+                        <input type="text" class="form-control 
+                            <?php echo (!$username_email->getValid() && !$username_required->getValid()) ? 'is-invalid':'' ?>" name="username" id="username">
                         <?php
-                        if (isset($validatedUserName) && !$validatedUserName) { ?>
+                        if (!$username_email->getValid()) : ?>
                             <div class="invalid-feedback">
-                                il nome utente è obbligatorio | il nome utente deve essere una mail
+                            <?php echo $username_email->getMessage() ?>
                             </div>
+                        <?php endif ?>
+
                         <?php
-                        }
-                        ?>
+                        if (!$username_required->getValid()) : ?>
+                            <div class="invalid-feedback">
+                            <?php echo $username_required->getMessage() ?>
+                            </div>
+                        <?php endif ?>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">password</label>
-                        <input type="text" id="password" name="password" class="form-control <?php echo $isValidPassword ?>">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="text" id="password" name="password" class="form-control <?php echo !$password->getValid() ? 'is-invalid' : ''  ?>">
                         <?php
-                        if (isset($validatedPassword) && !$validatedPassword) { ?>
+                        if (!$password->getValid()) : ?>
                             <div class="invalid-feedback">
-                                la password è obbligatoria
+                               <?php echo $password->getMessage() ?>
                             </div>
-                        <?php
-                        }
-                        ?>
+                        <?php endif ?>
                     </div>
 
                     <button class="btn btn-primary btn-sm" type="submit">Registrati</button>
