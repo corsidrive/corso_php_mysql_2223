@@ -19,7 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $last_name->isValid($_POST['last_name']);
     $birth_place->isValid($_POST['birth_place']);
     $gender->isValid($_POST['gender']);
-
+    
+    // Usato per il caso dei radio
+    // $value = isset($_POST['gender']) ? $_POST['gender'] :'';
+    // $gender->isValid($value);
 }
 
 /** questo script viene eseguito quanod visualizzo per la prima volta il form */
