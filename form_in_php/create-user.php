@@ -4,26 +4,30 @@
 //error_reporting(0); li spegne tutti
 require "./class/validator/Validable.php";
 require "./class/validator/ValidateRequired.php";
-// print_r($_POST);
+require "./class/validator/ValidateDate.php";
+print_r($_POST);
 
-$validatorName = new ValidateRequired('','Il nome è obblicatorio');
-
+$first_name = new ValidateRequired('','Il Nome è obblicatorio');
+$last_name  = new ValidateRequired('','Il Cognome è obblicatorio');
+$birtday  = new ValidateDate('','La data di nascità non è valida');
+$birth_place  = new ValidateRequired('','Il Luogo di nascita è obbligatorio');
+$gender  = new ValidateRequired('','Il Genere è obbligaztorio');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $validatedName = $validatorName->isValid($_POST['first_name']);
+    $first_name->isValid($_POST['first_name']);
+    $last_name->isValid($_POST['last_name']);
+    $birth_place->isValid($_POST['birth_place']);
+    $gender->isValid($_POST['gender']);
 
 }
 
 /** questo script viene eseguito quanod visualizzo per la prima volta il form */
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+// if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     
-}
-
-
+// }
 
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -42,86 +46,81 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <main class="container">
 
         <section class="row">
-            <div class="col-sm-3">
-                ciccio
-            </div>
             <div class="col-sm-6">
                 <form class="mt-1 mt-md-5" action="create-user.php" method="post">
                     <div class="mb-3">
                         <label for="first_name" class="form-label">nome</label>
                         <input type="text" 
-                            value="<?= $validatorName->getValue() ?>"
-                            class="form-control <?php echo !$validatorName->getValid() ? 'is-invalid':''  ?>" 
+                            value="<?= $first_name->getValue() ?>"
+                            class="form-control <?php echo !$first_name->getValid() ? 'is-invalid':''  ?>" 
                             name="first_name" 
                             id="first_name"
                         >
-                        <!-- mettere is-invalid -->
-                        <?php
-                        
-                        
-                        //GET isset($validatedName) prova a usare una variabile e se non esiste(false) non da warning
-                        //POST isset($validatedName) in questo caso da true, nel nostro caso
-                        if (!$validatorName->getValid()) { ?>
+                      
+                        <?php if (!$first_name->getValid()) : ?>
                             <div class="invalid-feedback">
-                                <?php echo $validatorName->getMessage() ?>
+                                <?php echo $first_name->getMessage() ?>
                             </div>
-                        <?php
-                        }
-                        ?>
+                        <?php endif ?>
 
 
                     </div>
                     <div class="mb-3">
                         <label for="last_name" class="form-label">cognome</label>
-                        <input type="text" class="form-control <?php echo $isValidLastNameClass ?>" name="last_name" id="last_name">
-                        <?php
-                        if (isset($validatedLastName) && !$validatedLastName) { ?>
+                        <input type="text"
+                               id="last_name"
+                               value="<?= $last_name->getValue() ?>"
+                               name="last_name" 
+                               class="form-control <?php echo !$last_name->getValid() ? 'is-invalid':'' ?>"
+                               >
+                        <?php if (!$last_name->getValid()) : ?>
                             <div class="invalid-feedback">
-                                il cognome è obbligatorio
+                                <?php echo $last_name->getMessage() ?>
                             </div>
-                        <?php
-                        }
-                        ?>
+                        <?php endif ?>
                     </div>
                     <div class="mb-3">
-                        <label for="birthday" class="form-label">data di nascita</label>
-                        <input type="date" class="form-control <?php echo $isValidBirthday ?>" name="birthday" id="birthday">
-                        <?php
-                        if (isset($validatedBirthday) && !$validatedBirthday) { ?>
+                        <label for="birthday" class="form-label">Data Di Nascita</label>
+                        <input type="date"
+                               value="<?= $birtday->getValue() ?>"
+                               class="form-control <?php echo !$birtday->getValid() ? 'is-invalid':'' ?>" 
+                               name="birthday" 
+                               id="birthday">
+                        
+                        <?php if (!$birtday->getValid()) : ?>
                             <div class="invalid-feedback">
-                                la data è obbligatoria
+                                <?php echo $birtday->getMessage() ?>
                             </div>
-                        <?php
-                        }
-                        ?>
+                        <?php endif ?>
                     </div>
                     <div class="mb-3">
                         <label for="birth_place" class="form-label">luogo di nascita</label>
-                        <input type="text" class="form-control <?php echo $isValidBirthPlace ?>" name="birth_place" id="birth_place">
-                        <?php
-                        if (isset($validatedBirthPlace) && !$validatedBirthPlace) { ?>
+                        <input type="text" 
+                               value="<?= $birth_place->getValue() ?>"
+                               class="form-control <?php echo $birth_place->getValid() ? 'is-invalid':'' ?>" 
+                               name="birth_place" 
+                               id="birth_place"
+                               >
+                        <?php if($birth_place->getValid()):?>
                             <div class="invalid-feedback">
-                                il luogo di nascita è obbligatorio
+                                <?php echo $birth_place->getMessage() ?>  
                             </div>
-                        <?php
-                        }
-                        ?>
+                        <?php endif; ?>
                     </div>
                     <div class="mb-3">
-                        <label for="gender" class="form-label">genere</label>
-                        <select name="gender" class="form-select <?php echo $isValidGender ?>" id="gender">
+                        <!-- <h1><?php echo $gender->getValue() == 'M' ? 'AA':'BB' ?></h1> -->
+                        <label for="gender" class="form-label">Genere</label>
+                        <select name="gender" class="form-select <?php echo !$gender->getValid() ? 'is-invalid' :'' ?>" id="gender">
                             <option value=""></option>
-                            <option value="M">M</option>
-                            <option value="F">F</option>
+                            <option <?php echo $gender->getValue() == 'M' ? 'selected':''  ?> value="M">M</option>
+                            <option <?php echo $gender->getValue() == 'F' ? 'selected':''  ?> value="F">F</option>
                         </select>
                         <?php
-                        if (isset($validatedGender) && !$validatedGender) : ?>
+                        if (!$gender->getValid()) : ?>
                             <div class="invalid-feedback">
-                                il genere è obbligatorio
+                                <?php echo $gender->getMessage() ?>  
                             </div>
-                        <?php
-                        endif//if() : endif sintassi alternativa if 
-                        ?>
+                        <?php endif; ?>
                         
                     </div>
                     <div class="mb-3">
