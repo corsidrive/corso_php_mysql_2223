@@ -73,3 +73,8 @@ Id: cweijan.vscode-mysql-client2
 Description: Database manager for MySQL/MariaDB, PostgreSQL, SQLite, Redis and ElasticSearch
 VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-mysql-client2
 ```
+
+
+https://www.w3schools.com/sql/sql_select.asp
+https://www.w3schools.com/sql/sql_insert.asp
+
