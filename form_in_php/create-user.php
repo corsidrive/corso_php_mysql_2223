@@ -1,5 +1,6 @@
 <?php
 
+
 //error_reporting(E_ALL); li vede tutti
 //error_reporting(0); li spegne tutti
 require "./class/validator/Validable.php";
@@ -107,6 +108,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         }
                         ?>
                     </div>
+
+                <div class="mb-3">
+                    <div class="row">
+                    <div class="col">
+                        
+                        <label for="birth_city" class="form-label">Città</label>
+                        <input type="text" class="form-control" name="birth_city" id="birth_city">
+
+
+                    </div>
+                    <div class="col">
+                        
+                        <label for="birth_region" class="form-label">Regione</label>
+                        <select id="birth_region" class="birth_region" name="birth_region">
+                                <option value="15">Piemonte</option>
+                        </select>
+
+                        </div>
+                        <div class="col">
+                        <label for="birth_province" class="form-label">Provincia</label>
+                        <select id="birth_province" class="birth_province" name="birth_province">
+                                <option value="12">Asti</option>
+                        </select>
+                            
+                    </div>
+                    </div>
+                </div>
+
                     <div class="mb-3">
                         <label for="gender" class="form-label">genere</label>
                         <select name="gender" class="form-select <?php echo $isValidGender ?>" id="gender">
