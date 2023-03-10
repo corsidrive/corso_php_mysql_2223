@@ -13,13 +13,13 @@ class ValidateRequired implements Validable {
 
  /** @var string rappresenta il valore immesso nel form ripulito */
  private $value;
- private $message ;
- private $hasMessage;
+ private $message;
+
  /** se il valore è valido e se devo visualizzare il messaggio  */
  private $valid;
  
- public function __construct($default_velue='',$message='è obbligatorio') {
-   $this->value = $default_velue;
+ public function __construct($default_value='',$message='è obbligatorio') {
+   $this->value = $default_value;
    $this->valid = true;
    $this->message = $message;
  }
@@ -29,6 +29,7 @@ class ValidateRequired implements Validable {
 
     $strip_tag = strip_tags($value);
     $valueWidoutSpace = trim($strip_tag);
+    
     if($valueWidoutSpace == ''){
        $this->valid = false;
        return false;
