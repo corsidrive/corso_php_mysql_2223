@@ -31,6 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username_required->isValid($_POST['username']);
     $password->isValid($_POST['password']);
 
+
+    // TODO RUNNER PERLAVALIDAZIONE
     if($first_name->getValid() && $last_name->getValid()){
         
     }

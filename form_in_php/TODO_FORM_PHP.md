@@ -19,9 +19,4 @@
         onchange (evento)
 
 
-        "C:\Users\utente\Desktop\Agenda globale per lo sviluppo sostenibile.pdf"
-        "C:\Users\utente\Agenda globale per lo sviluppo sostenibile.pdf"
-        Html.Table  --> org.formarete.roberto.sarasso.Html.Table.php
-        MD\Table
-        DOCX\Table
-        XLSX\Table
+- [x] aggiornato tutta applicazione con i namespace
