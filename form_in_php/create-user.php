@@ -1,14 +1,15 @@
 <?php
-require "../config.php";
-require "./class/Registry/it/Regione.php";
-require "./class/Registry/it/Provincia.php";
-//error_reporting(E_ALL); li vede tutti
-//error_reporting(0); li spegne tutti
-require "./class/validator/Validable.php";
-require "./class/validator/ValidateRequired.php";
-require "./class/validator/ValidateDate.php";
-require "./class/validator/ValidateMail.php";
 
+use Registry\it\Provincia;
+use Registry\it\Regione;
+use validator\ValidateDate;
+use validator\ValidateMail;
+use validator\ValidateRequired;
+
+require "../config.php";
+require "./autoload.php";
+
+// die();
 
 $first_name = new ValidateRequired('','Il Nome è obblicatorio');
 $last_name  = new ValidateRequired('','Il Cognome è obblicatorio');
@@ -18,7 +19,6 @@ $gender  = new ValidateRequired('','Il Genere è obbligatorio');
 
 $username_required  = new ValidateRequired('','Username è obbligaztorio');
 $username_email  = new ValidateMail('','Formato email non valido');
-
 $password  = new ValidateRequired('','Password è obbligatorio');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
