@@ -33,9 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     // TODO RUNNER PERLAVALIDAZIONE
-    if($first_name->getValid() && $last_name->getValid()){
-        
+    if($first_name->getValid() && $last_name->getValid() && $gender->getValid()){
+        // invio i dati al serve sql per memorizzarli
     }
+
     // Usato per il caso dei radio
     // $value = isset($_POST['gender']) ? $_POST['gender'] :'';
     // $gender->isValid($value);

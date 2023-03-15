@@ -9,8 +9,8 @@
 
 - [ ] Validazione su citta regione provincia lato server
 
-- [ ] quando i dati sono corretti devo inviarli e salvarli
-     [ ] un modo per controllare tutti i campi contemporaneamente
+- [/] quando i dati sono corretti devo inviarli e salvarli
+     [/] un modo per controllare tutti i campi contemporaneamente
 
 
 - [ ] seleziono regione, vedo solo le province corrispondenti
