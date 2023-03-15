@@ -18,8 +18,10 @@ $validatorRunner = new ValidatorRunner([
     'first_name' => new ValidateRequired('','Il Nome è obblicatorio'),
     'last_name'  => new ValidateRequired('','Il Cognome è obblicatorio'),
     'birthday'  => new ValidateDate('','La data di nascità non è valida'),
-    'birth_place'  => new ValidateRequired('','Il Luogo di nascita è obbligatorio'),
     'gender'  => new ValidateRequired('','Il Genere è obbligatorio'),
+    'birth_city'  => new ValidateRequired('','La città  è obbligatoria'),
+    'birth_region'  => new ValidateRequired('','La regione è obbligatoria'),
+    'birth_province'  => new ValidateRequired('','La provincia è obbligatoria'),
 
     'username'  => new ValidateRequired('','Username è obbligaztorio'),
     // 'username:email'  => new ValidateMail('','Formato email non valido'),
@@ -104,20 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                         <?php endif ?>
                     </div>
-                    <div class="mb-3">
-                        <label for="birth_place" class="form-label">luogo di nascita</label>
-                        <input type="text" 
-                               value="<?= $birth_place->getValue() ?>"
-                               class="form-control <?php echo !$birth_place->getValid() ? 'is-invalid':'' ?>" 
-                               name="birth_place" 
-                               id="birth_place"
-                               >
-                        <?php if(!$birth_place->getValid()):?>
-                            <div class="invalid-feedback">
-                                <?php echo $birth_place->getMessage() ?>  
-                            </div>
-                        <?php endif; ?>
-                    </div>
+
 
                 <div class="mb-3">
                     <div class="row">
