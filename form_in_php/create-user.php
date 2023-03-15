@@ -11,23 +11,26 @@ require "../config.php";
 require "./autoload.php";
 
 // die();
-
+/**
+ * TODO: Implementare criteri mutipli di valiidazione (array di validazioni non singole)
+ */
 $validatorRunner = new ValidatorRunner([
     'first_name' => new ValidateRequired('','Il Nome è obblicatorio'),
     'last_name'  => new ValidateRequired('','Il Cognome è obblicatorio'),
-    'birtday'  => new ValidateDate('','La data di nascità non è valida'),
+    'birthday'  => new ValidateDate('','La data di nascità non è valida'),
     'birth_place'  => new ValidateRequired('','Il Luogo di nascita è obbligatorio'),
     'gender'  => new ValidateRequired('','Il Genere è obbligatorio'),
 
-    'username_required'  => new ValidateRequired('','Username è obbligaztorio'),
-    'username_email'  => new ValidateMail('','Formato email non valido'),
+    'username'  => new ValidateRequired('','Username è obbligaztorio'),
+    // 'username:email'  => new ValidateMail('','Formato email non valido'),
     'password'  => new ValidateRequired('','Password è obbligatorio')
 ]);
+extract($validatorRunner->getValidatorList());
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $validatorRunner->isValid();
-    extract($validatorRunner->getValidatorList());
+   
 }
 
 
@@ -87,14 +90,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="mb-3">
                         <label for="birthday" class="form-label">Data Di Nascita</label>
                         <input type="date"
-                               value="<?= $birtday->getValue() ?>"
-                               class="form-control <?php echo !$birtday->getValid() ? 'is-invalid':'' ?>" 
+                               value="<?= $birthday->getValue() ?>"
+                               class="form-control <?php echo !$birthday->getValid() ? 'is-invalid':'' ?>" 
                                name="birthday" 
                                id="birthday">
                         
-                        <?php if (!$birtday->getValid()) : ?>
+                        <?php if (!$birthday->getValid()) : ?>
                             <div class="invalid-feedback">
-                                <?php echo $birtday->getMessage() ?>
+                                <?php echo $birthday->getMessage() ?>
                             </div>
                         <?php endif ?>
                     </div>
@@ -165,18 +168,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="mb-3">
                         <label for="username" class="form-label">Nome Utente / EMAIL</label>
                         <input type="text" class="form-control 
-                            <?php echo (!$username_email->getValid() && !$username_required->getValid()) ? 'is-invalid':'' ?>" name="username" id="username">
+                            <?php echo (!$username->getValid() && !$username->getValid()) ? 'is-invalid':'' ?>" name="username" id="username">
                         <?php
-                        if (!$username_email->getValid()) : ?>
+                        //if (!$username_email->getValid()) : ?>
                             <div class="invalid-feedback">
-                            <?php echo $username_email->getMessage() ?>
+                            <?php //echo $username_email->getMessage() ?>
                             </div>
-                        <?php endif ?>
+                        <?php // endif ?>
 
                         <?php
-                        if (!$username_required->getValid()) : ?>
+                        if (!$username->getValid()) : ?>
                             <div class="invalid-feedback">
-                            <?php echo $username_required->getMessage() ?>
+                            <?php echo $username->getMessage() ?>
                             </div>
                         <?php endif ?>
                     </div>
