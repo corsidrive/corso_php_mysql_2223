@@ -5,47 +5,32 @@ use Registry\it\Regione;
 use validator\ValidateDate;
 use validator\ValidateMail;
 use validator\ValidateRequired;
+use validator\ValidatorRunner;
 
 require "../config.php";
 require "./autoload.php";
 
 // die();
 
-$first_name = new ValidateRequired('','Il Nome è obblicatorio');
-$last_name  = new ValidateRequired('','Il Cognome è obblicatorio');
-$birtday  = new ValidateDate('','La data di nascità non è valida');
-$birth_place  = new ValidateRequired('','Il Luogo di nascita è obbligatorio');
-$gender  = new ValidateRequired('','Il Genere è obbligatorio');
+$validatorRunner = new ValidatorRunner([
+    'first_name' => new ValidateRequired('','Il Nome è obblicatorio'),
+    'last_name'  => new ValidateRequired('','Il Cognome è obblicatorio'),
+    'birtday'  => new ValidateDate('','La data di nascità non è valida'),
+    'birth_place'  => new ValidateRequired('','Il Luogo di nascita è obbligatorio'),
+    'gender'  => new ValidateRequired('','Il Genere è obbligatorio'),
 
-$username_required  = new ValidateRequired('','Username è obbligaztorio');
-$username_email  = new ValidateMail('','Formato email non valido');
-$password  = new ValidateRequired('','Password è obbligatorio');
+    'username_required'  => new ValidateRequired('','Username è obbligaztorio'),
+    'username_email'  => new ValidateMail('','Formato email non valido'),
+    'password'  => new ValidateRequired('','Password è obbligatorio')
+]);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    $first_name->isValid($_POST['first_name']);
-    $last_name->isValid($_POST['last_name']);
-    $birth_place->isValid($_POST['birth_place']);
-    $gender->isValid($_POST['gender']);
-    $username_email->isValid($_POST['username']);
-    $username_required->isValid($_POST['username']);
-    $password->isValid($_POST['password']);
-
-
-    // TODO RUNNER PERLAVALIDAZIONE
-    if($first_name->getValid() && $last_name->getValid() && $gender->getValid()){
-        // invio i dati al serve sql per memorizzarli
-    }
-
-    // Usato per il caso dei radio
-    // $value = isset($_POST['gender']) ? $_POST['gender'] :'';
-    // $gender->isValid($value);
+    $validatorRunner->isValid();
+    extract($validatorRunner->getValidatorList());
 }
 
-/** questo script viene eseguito quanod visualizzo per la prima volta il form */
-// if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    
-// }
+
 
 ?>
 
