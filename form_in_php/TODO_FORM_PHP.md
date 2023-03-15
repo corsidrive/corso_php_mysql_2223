@@ -1,16 +1,19 @@
-- ottenere elenco delle regioni 
-    - nome regione
-    - id regione   
 
-- ottenere elenco delle province 
+
+
+<!-- - ottenere elenco delle regioni 
+    - nome regione
+    - id regione    -->
+
+<!-- - ottenere elenco delle province 
     - nome provicia
-    - id / cod provincia   
+    - id / cod provincia    -->
 
 
 - [ ] Validazione su citta regione provincia lato server
 
-- [/] quando i dati sono corretti devo inviarli e salvarli
-     [/] un modo per controllare tutti i campi contemporaneamente
+- T[x] quando i dati sono corretti devo inviarli e salvarli
+     T[x] un modo per controllare tutti i campi contemporaneamente
 
 
 - [ ] seleziono regione, vedo solo le province corrispondenti
