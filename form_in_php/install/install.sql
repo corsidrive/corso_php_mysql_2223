@@ -219,6 +219,11 @@ CREATE TABLE `user` (
 ALTER TABLE `provincia`
   ADD PRIMARY KEY (`provincia_id`);
 
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`user_id`);
+
+ALTER TABLE user
+ADD UNIQUE (username);
 --
 -- Indici per le tabelle `regione`
 --
@@ -235,6 +240,8 @@ ALTER TABLE `regione`
 ALTER TABLE `provincia`
   MODIFY `provincia_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
+ALTER TABLE `user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT per la tabella `regione`
 --
