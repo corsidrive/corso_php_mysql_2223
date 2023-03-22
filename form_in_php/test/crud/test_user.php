@@ -22,8 +22,8 @@ $user->username = "mariorossi@email.com";
 $user->password = md5('Password');
 
 $crud->create($user);
-
 $result = $crud->read();
+
 if(count($result) == 1){
     echo "test utente inserito ok\n";
 }

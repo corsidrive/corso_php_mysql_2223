@@ -30,22 +30,62 @@ class UserCRUD {
 
     public function update()
     {
-        # code...
+        $query = "UPDATE";
     }
 
     public function read(int $user_id=null)
     {
+        // null --> false
+        // "" == false --> true
+        // "" === false --> false
+        // null == false --> true
+        // null === false --> false 
+        // false === false --> true
         $conn = new \PDO(DB_DSN,DB_USER,DB_PASSWORD);
-        $query = "SELECT * FROM user;";
-        $stm = $conn->prepare($query);
-        $stm->execute();
-        $result = $stm->fetchAll(PDO::FETCH_CLASS,User::class);
+        if(!is_null($user_id)){
+            $query = "SELECT * FROM user where user_id = :user_id";
+            $stm = $conn->prepare($query);
+            $stm->bindValue(':user_id',$user_id,PDO::PARAM_INT);
+            
+            $stm->execute();
+            $result = $stm->fetchAll(PDO::FETCH_CLASS,User::class);
+
+            if(count($result)== 1){
+                return $result[0];
+            }
+            if(count($result)>1){
+                throw new \Exception("Chiave primaria duplicata", 1);
+            }
+            if(count($result) === 0){
+                return false;
+            }
+        }else{
+            $query = "SELECT * FROM user";
+            $stm = $conn->prepare($query);
+
+            $stm->execute();
+            $result = $stm->fetchAll(PDO::FETCH_CLASS,User::class);
+
+            if(count($result) === 0){
+                return false;
+            }
+            return $result;
+        }
+
+   
         // echo "ciao sono ".User::class."\n";
-        return $result;
+        // return $result;
     }
 
-    public function delete()
+
+
+    public function delete($user_id)
     {
-        # code...
+        $conn = new \PDO(DB_DSN,DB_USER,DB_PASSWORD);
+        $query = "DELETE from user where user_id = :user_id";
+        $stm = $conn->prepare($query);
+        $stm->bindValue(':user_id',$user_id,PDO::PARAM_INT);
+        $stm->execute();
+        return $stm->rowCount();
     }
 }

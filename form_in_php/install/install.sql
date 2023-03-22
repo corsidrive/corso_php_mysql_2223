@@ -224,6 +224,8 @@ ALTER TABLE `user`
 
 ALTER TABLE user
 ADD UNIQUE (username);
+-- ADD UNIQUE (first_name,last_name);
+
 --
 -- Indici per le tabelle `regione`
 --
