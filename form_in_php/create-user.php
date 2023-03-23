@@ -123,9 +123,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="row">
                     <div class="col">
                         
-                        <label for="birth_city" class="form-label">Città</label>
+                        <label for="birth_city" class="form-label <?php echo !$birth_city->getValid() ? 'is-invalid':'' ?>">Città</label>
                         <input type="text" class="form-control" name="birth_city" id="birth_city">
-
+                        <?php if (!$birth_city->getValid()) : ?>
+                            <div class="invalid-feedback">
+                                <?php echo $birth_city->getMessage() ?>
+                            </div>
+                        <?php endif ?>
 
                     </div>
                     <div class="col">
