@@ -1,5 +1,7 @@
 <?php
 
+use crud\UserCRUD;
+use models\User;
 use Registry\it\Provincia;
 use Registry\it\Regione;
 use validator\ValidateDate;
@@ -33,11 +35,18 @@ $validatorRunner = new ValidatorRunner([
 extract($validatorRunner->getValidatorList());
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+   
     $validatorRunner->isValid();
-  
+    var_dump($validatorRunner->isValid());
+    var_dump($validatorRunner->getValid());
+    
     if($validatorRunner->getValid()){
-        echo "posso inviare i dati al server";
+
+       echo "dentro get valid";
+       $user = User::arrayToUser($_POST);
+       $crud = new UserCRUD();
+       $crud->create($user);
+       
     }
 }
 

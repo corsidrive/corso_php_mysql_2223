@@ -25,7 +25,7 @@ class UserCRUD {
         $stm->bindValue(':gender',$user->password,\PDO::PARAM_STR);
         
         $stm->execute();
-        
+        echo "sono al fondo di create";
     }
 
     public function update()
