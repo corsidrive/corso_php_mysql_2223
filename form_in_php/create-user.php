@@ -45,7 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
        $user = User::arrayToUser($_POST);
        $crud = new UserCRUD();
        $crud->create($user);
-       
+       // Redirect
+       header("location: http://www.google.com");
     }
 }
 

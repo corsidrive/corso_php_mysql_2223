@@ -21,8 +21,8 @@ class UserCRUD {
         $stm->bindValue(':regione_id',$user->regione_id,\PDO::PARAM_INT);
         $stm->bindValue(':provincia_id',$user->provincia_id,\PDO::PARAM_INT);
         $stm->bindValue(':username',$user->username,\PDO::PARAM_STR);
-        $stm->bindValue(':password',$user->password,\PDO::PARAM_STR);
-        $stm->bindValue(':gender',$user->password,\PDO::PARAM_STR);
+        $stm->bindValue(':password',md5($user->password),\PDO::PARAM_STR);
+        $stm->bindValue(':gender',$user->gender,\PDO::PARAM_STR);
         
         $stm->execute();
     }
