@@ -13,7 +13,10 @@ require "./autoload.php";
 // die();
 /**
  * TODO: Implementare criteri mutipli di valiidazione (array di validazioni non singole)
+ 'first_name' => [new ValidateRequired('','Il Nome è obblicatorio')],
+ 'username'  => [new ValidateRequired('','Username è obbligaztorio'),new ValidateMail('','')]
  */
+
 $validatorRunner = new ValidatorRunner([
     'first_name' => new ValidateRequired('','Il Nome è obblicatorio'),
     'last_name'  => new ValidateRequired('','Il Cognome è obblicatorio'),
