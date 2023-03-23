@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if($validatorRunner->getValid()){
 
-       echo "Posso salvare";
+       
        $user = User::arrayToUser($_POST);
        $crud = new UserCRUD();
        $crud->create($user);
@@ -122,9 +122,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="mb-3">
                     <div class="row">
                     <div class="col">
-                        
-                        <label for="birth_city" class="form-label <?php echo !$birth_city->getValid() ? 'is-invalid':'' ?>">Città</label>
-                        <input type="text" class="form-control" name="birth_city" id="birth_city">
+                        <label for="birth_city" class="form-label ">Città</label>
+                        <input type="text" class="form-control <?php echo !$birth_city->getValid() ? 'is-invalid':'' ?>" name="birth_city" id="birth_city">
                         <?php if (!$birth_city->getValid()) : ?>
                             <div class="invalid-feedback">
                                 <?php echo $birth_city->getMessage() ?>
@@ -212,10 +211,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <button class="btn btn-primary btn-sm" type="submit">Registrati</button>
                 </form>
             </div>
-
-
-
-      
         </section>
     </main>
 
