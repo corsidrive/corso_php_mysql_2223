@@ -25,8 +25,8 @@ $validatorRunner = new ValidatorRunner([
     'birthday'  => new ValidateDate('','La data di nascità non è valida'),
     'gender'  => new ValidateRequired('','Il Genere è obbligatorio'),
     'birth_city'  => new ValidateRequired('','La città  è obbligatoria'),
-    'birth_region'  => new ValidateRequired('','La regione è obbligatoria'),
-    'birth_province'  => new ValidateRequired('','La provincia è obbligatoria'),
+    'regione_id'  => new ValidateRequired('','La regione è obbligatoria'),
+    'provincia_id'  => new ValidateRequired('','La provincia è obbligatoria'),
 
     'username'  => new ValidateRequired('','Username è obbligaztorio'),
     // 'username:email'  => new ValidateMail('','Formato email non valido'),
@@ -37,12 +37,11 @@ extract($validatorRunner->getValidatorList());
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    
     $validatorRunner->isValid();
-    var_dump($validatorRunner->isValid());
-    var_dump($validatorRunner->getValid());
+
     
     if($validatorRunner->getValid()){
 
-       echo "dentro get valid";
+       echo "Posso salvare";
        $user = User::arrayToUser($_POST);
        $crud = new UserCRUD();
        $crud->create($user);
@@ -132,29 +131,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="col">
                         
                         <label for="birth_region" class="form-label">Regione</label>
-                        <select id="birth_region" class="form-select birth_region" name="birth_region">
+                        <select id="birth_region" class="form-select birth_region <?php echo !$regione_id->getValid() ? 'is-invalid':'' ?>" name="regione_id">
                                 <option value=""></option>
                                 <?php foreach(Regione::all() as $regione) : ?> 
                                     <option value="<?= $regione->regione_id ?>"><?= $regione->nome ?></option>
                                 <?php endforeach;  ?>
                         </select>
-
+                        <?php if (!$regione_id->getValid()) : ?>
+                            <div class="invalid-feedback">
+                                <?php echo $regione_id->getMessage() ?>
+                            </div>
+                        <?php endif ?>
                         </div>
                         <div class="col">
                         <label for="birth_province" class="form-label">Provincia</label>
-                        <select id="birth_province" class="form-select birth_province" name="birth_province">
+                        <select id="birth_province" class="form-select birth_province <?php echo !$provincia_id->getValid() ? 'is-invalid':'' ?>" name="provincia_id">
                         <option value=""></option>
                                 <?php foreach(Provincia::all() as $provincia) : ?> 
                                     <option value="<?= $provincia->provincia_id ?>"><?= $provincia->nome ?></option>
                                 <?php endforeach;  ?>
                         </select>
-                            
+                        <?php if (!$provincia_id->getValid()) : ?>
+                            <div class="invalid-feedback">
+                                <?php echo $provincia_id->getMessage() ?>
+                            </div>
+                        <?php endif ?>   
                     </div>
                     </div>
                 </div>
 
                     <div class="mb-3">
-                        <!-- <h1><?php echo $gender->getValue() == 'M' ? 'AA':'BB' ?></h1> -->
+                     
                         <label for="gender" class="form-label">Genere</label>
                         <select name="gender" class="form-select <?php echo !$gender->getValid() ? 'is-invalid' :'' ?>" id="gender">
                             <option value=""></option>
