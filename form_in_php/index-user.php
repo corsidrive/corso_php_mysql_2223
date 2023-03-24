@@ -1,8 +1,11 @@
+<?php
+use crud\UserCRUD;
+require "../config.php";
+require "./autoload.php";
 
-
-
-
-
+$users = (new UserCRUD())->read(); 
+print_r($users);
+?>
 
 <?php require  "./class/views/head-view.php" ?>
 

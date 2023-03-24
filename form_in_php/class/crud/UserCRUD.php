@@ -32,6 +32,7 @@ class UserCRUD {
         $query = "UPDATE";
     }
 
+    
     public function read(int $user_id=null)
     {
         // null --> false
