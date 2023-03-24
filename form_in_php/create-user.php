@@ -122,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <select id="birth_region" class="form-select birth_region <?php echo !$regione_id->getValid() ? 'is-invalid':'' ?>" name="regione_id">
                                 <option value=""></option>
                                 <?php foreach(Regione::all() as $regione) : ?> 
-                                    <option value="<?= $regione->regione_id ?>"><?= $regione->nome ?></option>
+                                    <option <?php $regione_id->getValue() == $regione->regione_id ? 'selected':'' ?> value="<?= $regione->regione_id ?>"><?= $regione->nome ?></option>
                                 <?php endforeach;  ?>
                         </select>
                         <?php if (!$regione_id->getValid()) : ?>
@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <select id="birth_province" class="form-select birth_province <?php echo !$provincia_id->getValid() ? 'is-invalid':'' ?>" name="provincia_id">
                         <option value=""></option>
                                 <?php foreach(Provincia::all() as $provincia) : ?> 
-                                    <option value="<?= $provincia->provincia_id ?>"><?= $provincia->nome ?></option>
+                                    <option <?php $provincia_id->getValue() == $provincia->provincia_id ? 'selected':'' ?> value="<?= $provincia->provincia_id ?>"><?= $provincia->nome ?></option>
                                 <?php endforeach;  ?>
                         </select>
                         <?php if (!$provincia_id->getValid()) : ?>
