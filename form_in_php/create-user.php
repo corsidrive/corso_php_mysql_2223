@@ -37,12 +37,13 @@ extract($validatorRunner->getValidatorList());
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    
     $validatorRunner->isValid();
-    var_dump($validatorRunner->isValid());
+    
+    echo "il form è valido ?";
     var_dump($validatorRunner->getValid());
     
     if($validatorRunner->getValid()){
 
-       echo "dentro get valid";
+       echo "IL FORM e VALIDO";
        $user = User::arrayToUser($_POST);
        $crud = new UserCRUD();
        $crud->create($user);
