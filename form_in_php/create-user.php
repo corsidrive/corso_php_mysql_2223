@@ -46,29 +46,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
        $crud = new UserCRUD();
        $crud->create($user);
        // Redirect
-       header("location: http://www.google.com");
+       header("location: index-user.php");
     }
 }
-
-
-
 ?>
 
-<!doctype html>
-<html lang="en">
+<?php require  "./class/views/head-view.php" ?>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Esercitazione Form</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-</head>
-
-<body>
-    <header class="bg-light p-1">
-        <h1 class="display-6">Applicazione demo</h1>
-    </header>
-    <main class="container">
 
         <section class="row">
             <div class="col-sm-8">
@@ -182,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="mb-3">
                         <label for="username" class="form-label">Nome Utente / EMAIL</label>
-                        <input type="text"  value="<?php echo $username->getValue() ?>" class="form-control 
+                        <input type="text" autocomplete="no"  value="<?php echo $username->getValue() ?>" class="form-control 
                             <?php echo (!$username->getValid() && !$username->getValid()) ? 'is-invalid':'' ?>" name="username" id="username">
                         <?php
                         //if (!$username_email->getValid()) : ?>
@@ -200,7 +184,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" value="<?= $password->getValue()  ?>" id="password" name="password" class="form-control <?php echo !$password->getValid() ? 'is-invalid' : ''  ?>">
+                        <input autocomplete="off" type="password" value="<?= $password->getValue()  ?>" id="password" name="password" class="form-control <?php echo !$password->getValid() ? 'is-invalid' : ''  ?>">
                         <?php
                         if (!$password->getValid()) : ?>
                             <div class="invalid-feedback">
@@ -213,9 +197,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </form>
             </div>
         </section>
-    </main>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-</body>
-
-</html>
+   
+        <?php require "./class/views/footer-view.php" ?>
