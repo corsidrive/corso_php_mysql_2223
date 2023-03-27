@@ -29,6 +29,8 @@ class UserCRUD {
 
     public function update()
     {
+        echo "sono dentro update";
+        //die();
         $query = "UPDATE";
     }
 

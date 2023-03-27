@@ -40,8 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     
     if($validatorRunner->getValid()){
-
-       
+        
        $user = User::arrayToUser($_POST);
        $crud = new UserCRUD();
        $crud->create($user);

@@ -11,11 +11,13 @@ use validator\ValidatorRunner;
 
 require "../config.php";
 require "./autoload.php";
-
+error_reporting(0);
 $user_id = filter_input(INPUT_GET,'user_id',FILTER_VALIDATE_INT);
 $crud = new UserCRUD();
 $user = $crud->read($user_id);
-
+// var_dump($user_id);
+// print_r($user);
+print_r($_POST);
 // echo $user->birth_city;
 
 $validatorRunner = new ValidatorRunner([
@@ -33,20 +35,17 @@ $validatorRunner = new ValidatorRunner([
     # TODO: in update user la password se non è compilata rimane la stessa, se è compilata viene  cambiata 
 ]);
 extract($validatorRunner->getValidatorList());
-print_r($birth_city);
 # --------------------------------------------------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    die();
+    echo "SONO NEL POST di EDIT";
     $validatorRunner->isValid();
-
-    
     if($validatorRunner->getValid()){
 
-       
        $user = User::arrayToUser($_POST);
        $crud = new UserCRUD();
-       $crud->create($user);
+       $crud->update($user);
        // Redirect
+    
        header("location: index-user.php");
     }
 }
@@ -57,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <section class="row">
             <div class="col-sm-8">
-                <form class="mt-1 mt-md-5" action="create-user.php" method="post">
+                <form class="mt-1 mt-md-5" action="edit-user.php" method="post">
                     <div class="mb-3">
                         <label for="first_name" class="form-label">nome</label>
                         <input type="text" 
@@ -196,7 +195,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?php endif ?>
                     </div>
 
-                    <button class="btn btn-primary btn-sm" type="submit">Registrati</button>
+                    <button class="btn btn-primary btn-sm" type="submit">Aggiorna</button>
                 </form>
             </div>
         </section>
