@@ -21,11 +21,10 @@ class UserCRUD {
         $stm->bindValue(':regione_id',$user->regione_id,\PDO::PARAM_INT);
         $stm->bindValue(':provincia_id',$user->provincia_id,\PDO::PARAM_INT);
         $stm->bindValue(':username',$user->username,\PDO::PARAM_STR);
-        $stm->bindValue(':password',$user->password,\PDO::PARAM_STR);
-        $stm->bindValue(':gender',$user->password,\PDO::PARAM_STR);
+        $stm->bindValue(':password',md5($user->password),\PDO::PARAM_STR);
+        $stm->bindValue(':gender',$user->gender,\PDO::PARAM_STR);
         
         $stm->execute();
-        echo "sono al fondo di create";
     }
 
     public function update()
@@ -33,7 +32,8 @@ class UserCRUD {
         $query = "UPDATE";
     }
 
-    public function read(int $user_id=null)
+    
+    public function read(int $user_id=null):User|array|bool
     {
         // null --> false
         // "" == false --> true

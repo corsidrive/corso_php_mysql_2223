@@ -16,7 +16,12 @@ class User {
     {
         return $this->first_name." ".$this->last_name;
     }
-    
+  
+    /**
+     * @param array $class_array array associativo che contiene tutte le informazioni degli attributi
+     * dell'oggetto user che verra creato.
+     * @return User Utente creato
+     */
     public static function arrayToUser(array $class_array):User
     {
        $user = new User;

@@ -18,6 +18,8 @@ class ValidateDate implements Validable {
 
     public function isValid($value)
     {
+        // echo "datAs";
+        // var_dump($value);die();
         $strip_tag = strip_tags($value);
         $sanitize = trim($strip_tag);
         
