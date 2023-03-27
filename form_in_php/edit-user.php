@@ -16,6 +16,8 @@ $user_id = filter_input(INPUT_GET,'user_id',FILTER_VALIDATE_INT);
 $crud = new UserCRUD();
 $user = $crud->read($user_id);
 
+// echo $user->birth_city;
+
 $validatorRunner = new ValidatorRunner([
     'first_name' => new ValidateRequired($user->first_name,'Il Nome è obblicatorio'),
     'last_name'  => new ValidateRequired($user->last_name,'Il Cognome è obblicatorio'),
@@ -31,7 +33,7 @@ $validatorRunner = new ValidatorRunner([
     # TODO: in update user la password se non è compilata rimane la stessa, se è compilata viene  cambiata 
 ]);
 extract($validatorRunner->getValidatorList());
-
+print_r($birth_city);
 # --------------------------------------------------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     die();
@@ -88,8 +90,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?php endif ?>
                     </div>
                     <div class="mb-3">
+                        <?= $birthday->getValue() ?>
                         <label for="birthday" class="form-label">Data Di Nascita</label>
                         <input type="date"
+                               
                                value="<?= $birthday->getValue() ?>"
                                class="form-control <?php echo !$birthday->getValid() ? 'is-invalid':'' ?>" 
                                name="birthday" 
@@ -107,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="row">
                     <div class="col">
                         <label for="birth_city" class="form-label ">Città</label>
-                        <input type="text" class="form-control <?php echo !$birth_city->getValid() ? 'is-invalid':'' ?>" name="birth_city" id="birth_city">
+                        <input type="text" value="<?= $birth_city->getValue() ?>" class="form-control <?php echo !$birth_city->getValid() ? 'is-invalid':'' ?>" name="birth_city" id="birth_city">
                         <?php if (!$birth_city->getValid()) : ?>
                             <div class="invalid-feedback">
                                 <?php echo $birth_city->getMessage() ?>
@@ -119,9 +123,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         
                         <label for="birth_region" class="form-label">Regione</label>
                         <select id="birth_region" class="form-select birth_region <?php echo !$regione_id->getValid() ? 'is-invalid':'' ?>" name="regione_id">
-                                <option value=""></option>
+                                <option value="">scegli</option>
                                 <?php foreach(Regione::all() as $regione) : ?> 
-                                    <option <?php $regione_id->getValue() == $regione->regione_id ? 'selected':'' ?> value="<?= $regione->regione_id ?>"><?= $regione->nome ?></option>
+                                    <option <?= $regione_id->getValue() == $regione->regione_id ? 'selected':'' ?> value="<?= $regione->regione_id ?>"><?= $regione->nome ?></option>
                                 <?php endforeach;  ?>
                         </select>
                         <?php if (!$regione_id->getValid()) : ?>
@@ -135,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <select id="birth_province" class="form-select birth_province <?php echo !$provincia_id->getValid() ? 'is-invalid':'' ?>" name="provincia_id">
                         <option value=""></option>
                                 <?php foreach(Provincia::all() as $provincia) : ?> 
-                                    <option <?php $provincia_id->getValue() == $provincia->provincia_id ? 'selected':'' ?> value="<?= $provincia->provincia_id ?>"><?= $provincia->nome ?></option>
+                                    <option <?= $provincia_id->getValue() == $provincia->provincia_id ? 'selected':'' ?> value="<?= $provincia->provincia_id ?>"><?= $provincia->nome ?></option>
                                 <?php endforeach;  ?>
                         </select>
                         <?php if (!$provincia_id->getValid()) : ?>

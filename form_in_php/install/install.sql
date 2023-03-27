@@ -213,12 +213,12 @@ CREATE TABLE `user` (
 
 
 INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `birthday`, `birth_city`, `regione_id`, `provincia_id`, `gender`, `username`, `password`) VALUES
-(9, 'mario', 'sdfsdf', '0000-00-00', 'sfdsf', 15, 15, '', '@b.itdfdfsg', 'segretissimo'),
-(15, 'sdfsdf', 'sdfsdf', '0000-00-00', 'sfdsf', 16, 15, 'M', 'aaa@xcvxc', 'a3ea3259dd51c5d28ac011a8dbf78e79'),
-(19, 'mario', 'sdfsdf', '0000-00-00', 'sfdsf', 20, 18, 'M', 'xzczxcxzczxcz', 'a3ea3259dd51c5d28ac011a8dbf78e79'),
-(20, 'mario', 'sdfsdf', '0000-00-00', 'sfdsf', 18, 17, 'M', 'wadaswdfasdf asfa', 'a3ea3259dd51c5d28ac011a8dbf78e79'),
-(21, 'mario', 'asdasd', '2023-03-17', 'sdfdsfs', 18, 17, 'M', 'a@b.it', 'a3ea3259dd51c5d28ac011a8dbf78e79'),
-(23, 'dfgdgdfg', 'asdasd', '0000-00-00', 'sfdsf', 2, 1, 'M', 'b@b.it', 'a3ea3259dd51c5d28ac011a8dbf78e79');
+(9, 'Maria', 'Rossi', '2020-04-17', 'sfdsf', 15, 15, 'F', '@b.itdfdfsg', 'segretissimo'),
+(15, 'Giuseppe', 'Verdi', '2017-03-17', 'sfdsf', 16, 15, 'M', 'giuseppe@xcvxc', 'a3ea3259dd51c5d28ac011a8dbf78e79'),
+(19, 'Davide', 'Esliano', '2013-03-17', 'sfdsf', 20, 18, 'M', 'xzczxcxzczxcz', 'a3ea3259dd51c5d28ac011a8dbf78e79'),
+(20, 'mario', 'Prosperini', '2000-03-12', 'sfdsf', 18, 17, 'M', 'wadaswdfasdf asfa', 'a3ea3259dd51c5d28ac011a8dbf78e79'),
+(21, 'Massimo', 'Rivola', '1999-03-01', 'sdfdsfs', 18, 17, 'M', 'a@b.it', 'a3ea3259dd51c5d28ac011a8dbf78e79'),
+(23, 'Marco', 'Belli', '1984-01-11', 'sfdsf', 2, 1, 'M', 'b@b.it', 'a3ea3259dd51c5d28ac011a8dbf78e79');
 
 --
 --
