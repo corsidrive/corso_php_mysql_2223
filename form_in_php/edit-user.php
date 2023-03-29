@@ -11,13 +11,17 @@ use validator\ValidatorRunner;
 
 require "../config.php";
 require "./autoload.php";
-error_reporting(0);
+
 $user_id = filter_input(INPUT_GET,'user_id',FILTER_VALIDATE_INT);
-$crud = new UserCRUD();
-$user = $crud->read($user_id);
+if($_SERVER['REQUEST_METHOD'] === 'GET'){
+    $crud = new UserCRUD();
+    $user = $crud->read($user_id);
+}else{
+    //print_r($_POST);
+    $user = User::arrayToUser($_POST);
+}
 // var_dump($user_id);
 // print_r($user);
-print_r($_POST);
 // echo $user->birth_city;
 
 $validatorRunner = new ValidatorRunner([
@@ -46,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
        $crud->update($user);
        // Redirect
     
-       header("location: index-user.php");
+    //    header("location: index-user.php");
     }
 }
 ?>
@@ -57,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <section class="row">
             <div class="col-sm-8">
                 <form class="mt-1 mt-md-5" action="edit-user.php" method="post">
+                    <input type="hidden"  />
                     <div class="mb-3">
                         <label for="first_name" class="form-label">nome</label>
                         <input type="text" 
@@ -166,34 +171,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?php endif; ?>
                         
                     </div>
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Nome Utente / EMAIL</label>
-                        <input type="text" autocomplete="no"  value="<?php echo $username->getValue() ?>" class="form-control 
-                            <?php echo (!$username->getValid() && !$username->getValid()) ? 'is-invalid':'' ?>" name="username" id="username">
-                        <?php
-                        //if (!$username_email->getValid()) : ?>
-                            <div class="invalid-feedback">
-                            <?php //echo $username_email->getMessage() ?>
-                            </div>
-                        <?php // endif ?>
 
-                        <?php
-                        if (!$username->getValid()) : ?>
-                            <div class="invalid-feedback">
-                            <?php echo $username->getMessage() ?>
-                            </div>
-                        <?php endif ?>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input autocomplete="off" type="password" value="<?= $password->getValue()  ?>" id="password" name="password" class="form-control <?php echo !$password->getValid() ? 'is-invalid' : ''  ?>">
-                        <?php
-                        if (!$password->getValid()) : ?>
-                            <div class="invalid-feedback">
-                               <?php echo $password->getMessage() ?>
-                            </div>
-                        <?php endif ?>
-                    </div>
+
 
                     <button class="btn btn-primary btn-sm" type="submit">Aggiorna</button>
                 </form>
