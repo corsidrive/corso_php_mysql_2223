@@ -11,6 +11,7 @@ class User {
     public $gender;
     public $username;
     public $password;
+    public $user_id;
 
     public function label()
     {

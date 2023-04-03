@@ -25,6 +25,7 @@ class UserCRUD {
         $stm->bindValue(':gender',$user->gender,\PDO::PARAM_STR);
         
         $stm->execute();
+        return $conn->lastInsertId();
     }
 
     public function update()
