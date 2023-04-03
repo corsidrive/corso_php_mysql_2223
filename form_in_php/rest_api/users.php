@@ -53,15 +53,52 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
     
     case 'POST' :
+        // print_r($_POST);die();
+        $input = file_get_contents('php://input');
+        $request = json_decode($input,true); // ottengo iun array associativo
+        // var_dump($request); die();
+
+        $user = User::arrayToUser($request);
+        // print_r($user);die();
+        $last_id = $crud->create($user);
+
+        // https://oozou.com/blog/standardizing-restful-json-apis-with-openapi-spec-53
+        // $response = [
+        //     'data' => [
+        //         'type' => "users",
+        //         'id' => $last_id,
+        //     'attributes' => $user
+        //     ]
+        // ];
+
+        $user = (array) $user;
+        unset($user['password']); 
+        
+        $user['user_id'] = $last_id;    
+        $response = [
+            'data' => $user,
+            'status' => 202
+        ];
+
+        echo json_encode($response);
+
+        break;
+    case 'PUT' : 
+
 
         $input = file_get_contents('php://input');
         $request = json_decode($input,true); // ottengo iun array associativo
 
         $user = User::arrayToUser($request);
-        $crud->create($user);
+        $user->user_id = filter_input(INPUT_GET,'user_id');
+        $last_id = $crud->update($user);
+
+        $crud->update();
 
         break;
         default:
-        # code...
         break;
-}
+
+    
+
+    }
