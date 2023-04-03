@@ -93,7 +93,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $user->user_id = filter_input(INPUT_GET,'user_id');
         $last_id = $crud->update($user);
 
-        $crud->update();
+        $crud->update($user);
 
         break;
         default:
