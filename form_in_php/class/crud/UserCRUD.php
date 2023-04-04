@@ -1,6 +1,7 @@
 <?php 
 namespace crud;
 
+use Exception;
 use models\User;
 use PDO;
 
@@ -9,6 +10,7 @@ class UserCRUD {
 
     public function create(User $user)
     {
+        print_r($user);
         $query = "INSERT INTO user ( first_name, last_name, birthday, birth_city, regione_id, provincia_id, gender, username, password) 
                   VALUES (:first_name, :last_name, :birthday, :birth_city, :regione_id, :provincia_id, :gender, :username, :password)
                  ";
@@ -32,6 +34,11 @@ class UserCRUD {
     {
         // print_r($user);die($user);
         // $query = "UPDATE";
+
+        if(!$this->read($user->user_id)){
+            throw new Exception("utente inesistente", 404);
+        }
+
         $query = "UPDATE user
                 SET first_name = :first_name, 
                     last_name =  :last_name,
@@ -54,6 +61,7 @@ class UserCRUD {
         $stm->bindValue(':user_id',$user->user_id,\PDO::PARAM_INT);
  
         $stm->execute();
+        return $conn->lastInsertId();
     }
 
 
