@@ -64,9 +64,9 @@ Scrivere due classi *ValidateRequired* e *ValidateDate*
 ### Classe/ Pacchetto di validazione visto su github
 
 [https://github.com/rakit/validation](https://github.com/rakit/validation)
-
-
 ### Estensione per database
+
+
 ```
 Name: MySQL
 Id: cweijan.vscode-mysql-client2
@@ -77,4 +77,15 @@ VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=cweijan
 
 https://www.w3schools.com/sql/sql_select.asp
 https://www.w3schools.com/sql/sql_insert.asp
+
+
+# PHP unit
+
+nodemon -x ./vendor/bin/phpunit tests
+
+
+Usare nodemon con  progetto php
+https://stackoverflow.com/questions/67019987/nodemon-specifying-extension-watch-list-using-config-files
+
+https://sergeyzhuk.me/2019/09/16/live-reload-php-applications/
 
