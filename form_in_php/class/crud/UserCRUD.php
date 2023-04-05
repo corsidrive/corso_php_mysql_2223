@@ -10,7 +10,7 @@ class UserCRUD {
 
     public function create(User $user)
     {
-        print_r($user);
+        
         $query = "INSERT INTO user ( first_name, last_name, birthday, birth_city, regione_id, provincia_id, gender, username, password) 
                   VALUES (:first_name, :last_name, :birthday, :birth_city, :regione_id, :provincia_id, :gender, :username, :password)
                  ";
@@ -32,8 +32,7 @@ class UserCRUD {
 
     public function update(User $user)
     {
-        // print_r($user);die($user);
-        // $query = "UPDATE";
+        
 
         if(!$this->read($user->user_id)){
             throw new Exception("utente inesistente", 404);
