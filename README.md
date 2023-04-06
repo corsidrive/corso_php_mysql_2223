@@ -83,6 +83,28 @@ https://www.w3schools.com/sql/sql_insert.asp
 
 nodemon -x ./vendor/bin/phpunit tests
 
+con file di configurazione
+nodemon.json
+```json
+
+{
+    "verbose": false,
+    "ignore": [
+        ".git",
+        ".idea"
+    ],
+    "execMap": {
+        "php": "php"
+    },
+    "restartable": "r",
+    "ext": "php",
+    "events": {
+        "start": "clear"
+      }
+}
+
+
+```
 
 Usare nodemon con  progetto php
 https://stackoverflow.com/questions/67019987/nodemon-specifying-extension-watch-list-using-config-files

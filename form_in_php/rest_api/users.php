@@ -77,6 +77,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
    
         try {
             $input = file_get_contents('php://input');
+         
             $request = json_decode($input,true); // ottengo iun array associativo
       
             $user = User::arrayToUser($request);
