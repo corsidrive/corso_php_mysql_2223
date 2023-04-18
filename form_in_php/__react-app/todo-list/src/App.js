@@ -1,25 +1,44 @@
 import logo from './logo.svg';
 import './App.css';
+import CardBase from './components/CardBase';
 
+/** https://www.telerik.com/blogs/beginners-guide-loops-in-react-jsx */
 
 function App() {
+
+  const booklist = [
+    {
+      titolo: "le 4 piume",
+      autore:"kipling"
+    },
+    {
+      titolo: "il grande gabsy",
+      autore: "scoot"
+    },
+    {
+      titolo: "kim",
+      autore: "kipling"
+    },
+    // {
+    //   titolo: "kim"
+    // }
+  ]
+
+  // Trasformo le informazioni in componenti
+  const card_list = booklist.map((book,key) => <CardBase key={key} testo={book.autore} titolo={book.titolo} />)
+  // const card_list = booklist.map( function(book){return <CardBase titolo={book.titolo}  /> })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org" 
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn CICCIO
-        </a>
-      </header>
-    </div>
+    <section>
+
+      <div className="App">
+        {card_list}
+      </div>
+      <hr />
+      <div className="App">
+        {booklist.map( book => <CardBase key={book.titolo}  titolo={book.titolo} />)}
+      </div>
+    </section>
   )
 }
 
