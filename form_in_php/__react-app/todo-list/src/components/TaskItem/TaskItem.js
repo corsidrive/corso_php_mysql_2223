@@ -1,6 +1,4 @@
-
-
-const TaskItem =  props  => {
+const TaskItem  =  props  => {
     return (
         <div id="todo-list">
             <div className="todo done">
@@ -18,3 +16,5 @@ const TaskItem =  props  => {
         </div>
     )
 } 
+
+export default TaskItem
