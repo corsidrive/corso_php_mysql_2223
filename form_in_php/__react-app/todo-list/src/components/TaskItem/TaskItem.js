@@ -1,20 +1,16 @@
-const TaskItem  =  props  => {
+// const { nome_task, done }= props
+// props.done, props.nome_task
+function TaskItem({ nome_task, done }){
     return (
-        <div id="todo-list">
-            <div className="todo done">
-                <h3>Task</h3>
-                <button className="finish-todo">
-                    <i className="fa-solid fa-check"></i>
-                </button>
-                <button className="edit-todo">
-                    <i className="fa-solid fa-pen"></i>
-                </button>
-                <button className="remove-todo">
-                    <i className="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-        </div>
+        <li className={done ? 'task_gia_fatta': ''}>
+            <input  checked={done} type="checkbox" />
+             {done}
+            <label>{ nome_task }</label>
+            <input type="text" defaultValue="Go Siihopping" />
+            <button className="edit">Edit</button>
+            <button className="delete">Delete</button>
+      </li>
     )
-} 
+}
 
-export default TaskItem
+export default TaskItem;
