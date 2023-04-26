@@ -5,6 +5,11 @@ const SearchBar = () => {
    const [taskName,setTaskName] = useState('')
    const [taskDueDate,setTaskDueDate] = useState('')
 
+   function onChange(){
+
+   }
+
+
     return (
         <section className="container">
             <pre>
