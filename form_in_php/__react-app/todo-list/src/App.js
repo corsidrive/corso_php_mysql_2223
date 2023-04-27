@@ -46,7 +46,8 @@ return (
     <button onClick={onShowCompleted}>comleted</button>
     {/* <button onClick={aggiungiTask}>Add Task</button> */}
     <TaskList header={'Paolo'} tasks={taskListData}>
-      {taskListData.map( task => <TaskItem key={task.task_id} 
+      {taskListData.map( task => <TaskItem 
+                                    key={task.id} 
                                     parentRemoveTask={parentRemoveTask}
                                     id={task.id}   
                                     done={task.done} 

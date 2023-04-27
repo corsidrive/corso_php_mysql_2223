@@ -1,22 +1,25 @@
 // const { nome_task, done }= props
 // props.done, props.nome_task
 
+import { useState } from "react"
+
 
 function TaskItem({ nome_task, done,id,parentRemoveTask }){
+    const [doneCheckbox,setDoneCheckbox]=useState(done)
 
     function onRemoveTask(){
             console.log("task "+id)
             parentRemoveTask(id)
     }
 
-    function onUpdateStatus() {
-            console.log(id,!done)
+    function onUpdateStatus(event) {
             
+        
     }
 
     return (
         <li className={done ? 'task_gia_fatta': ''}>
-            <input onChange={onUpdateStatus} checked={done} type="checkbox" />
+            <input onChange={(event)=>setDoneCheckbox(event.target.checked)} checked={doneCheckbox}  type="checkbox" />
              {done}
             <label>{ nome_task }</label>
             <input type="text" defaultValue="Go Siihopping" />
