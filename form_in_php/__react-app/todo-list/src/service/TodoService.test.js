@@ -132,14 +132,6 @@ const tasklist = [
     
         
 
-    //console.log(addTaskNoName);
-
-
-    // const task_id = 12;
-
-    // const removedTasklist =  removeTask(task_id,tasklist)
-    // console.log("----------")
-    // console.log(removedTasklist)
 
 
     const updatedTaskItem = {
