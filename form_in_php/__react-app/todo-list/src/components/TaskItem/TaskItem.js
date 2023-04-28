@@ -13,14 +13,14 @@ function TaskItem({ nome_task, done,id,parentRemoveTask }){
     }
 
     function onUpdateStatus(event) {
-        setDoneCheckbox(event.target.checked)
-        // 
+            
+        
     }
 
     return (
         <li className={done ? 'task_gia_fatta': ''}>
-            {doneCheckbox ? <h1>FATTO</h1> : <h1>DA FARE</h1> }
-            <input onChange={(event)=>onUpdateStatus(event)}
+            {doneCheckbox ? <h1>FATTO</h1> :  <h1>DA FARE</h1> }
+            <input onChange={(event)=>setDoneCheckbox(event.target.checked)}
                    checked={doneCheckbox}
                   
                    type="checkbox" />
