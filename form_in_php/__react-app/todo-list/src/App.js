@@ -10,7 +10,30 @@ import { useState } from 'react';
 
 function App() {
 
-const [taskListData,setTaskListData] = useState([]);
+const [taskListData,setTaskListData] = useState([
+    
+  { 
+  name:"comprare il latte",
+  user_id:12,
+  id:11,
+  due_date:"2023-04-25",
+  done:true
+  },
+  {
+  name:"comprare il dentifricio",
+  user_id:12,
+  id:12,
+  due_date:"2023-04-25",
+  done:false
+  }, 
+  {
+  name:"comprare il la farina",
+  user_id:10,
+  id:13,
+  due_date:"2023-04-22",
+  done:true
+  },
+]);
 
 function parentAddTask(newTask){
   const newTaskListData = addTask(newTask,taskListData)

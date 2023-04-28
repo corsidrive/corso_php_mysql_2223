@@ -33,6 +33,7 @@ const SearchBar = (props) => {
                            className="task-control" 
                            value={taskName}
                            onChange={ evento => {
+                                //evento target è il campo di input
                                 setTaskName(evento.target.value)
                             }}
                            
