@@ -5,7 +5,7 @@ import './App.css';
 import TaskItem from "./components/TaskItem/TaskItem";
 import TaskList from './components/TaskList/TaskList';
 import SearchBar from './components/SearchBar';
-import { addTask, removeTask } from './service/TodoService';
+import { activeFilter, addTask, completedFilter, removeTask } from './service/TodoService';
 import { useState } from 'react';
 
 function App() {
@@ -35,6 +35,8 @@ const [taskListData,setTaskListData] = useState([
   },
 ]);
 
+const [filtredTasks,setFiltredTask] = useState(taskListData);
+
 function parentAddTask(newTask){
   const newTaskListData = addTask(newTask,taskListData)
   setTaskListData(newTaskListData)
@@ -47,19 +49,21 @@ function parentRemoveTask(taskId){
 }
   
 function onShowCompleted() {
-    // chiamo il servizio 
-    // aggiorno lo stato
+  const res = completedFilter(taskListData)
+  setFiltredTask(res)
 }
+
 function onShowAll() {
-    // chiamo il servizio 
-    // aggiorno lo stato
+  setFiltredTask(taskListData)
 }
     
 function onShowActive() {
-    // chiamo il servizio 
-    // aggiorno lo stato
+  const res = activeFilter(taskListData)
+  setFiltredTask(res)
 }
-    
+
+
+
 return (
   <main>
     <SearchBar  parentAddTask={parentAddTask}></SearchBar>
@@ -69,7 +73,7 @@ return (
     <button onClick={onShowCompleted}>comleted</button>
     {/* <button onClick={aggiungiTask}>Add Task</button> */}
     <TaskList header={'Paolo'} tasks={taskListData}>
-      {taskListData.map( task => <TaskItem 
+      {filtredTasks.map( task => <TaskItem 
                                     key={task.id} 
                                     parentRemoveTask={parentRemoveTask}
                                     id={task.id}   
@@ -77,6 +81,9 @@ return (
                                     nome_task={task.name} 
                                     /> )}
     </TaskList>
+    <pre>
+      {JSON.stringify(filtredTasks,null,2)}
+    </pre>
   </main>
 )
 }

@@ -30,7 +30,7 @@ const tasklist = [
 
     const activeTaskList = activeFilter(tasklist)
 
-    // console.log(activeTaskList);
+  
 
     if(!(activeTaskList.length == 1)){ 
         console.log("test fallito me ne aspettavo uno solo");
