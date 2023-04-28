@@ -1,16 +1,28 @@
 import { useState } from "react"
 
-const SearchBar = () => {
+const SearchBar = (props) => {
 
+   // Hook useState  const tasKName | const setTaskName
+   // taskName è la variabile che contiene lo stato attuale
+   // setTaskName è la funzione che devo invocare ogni volta che devo comunicare a react che
+   // il valore di taskName è cambiato 
    const [taskName,setTaskName] = useState('')
    const [taskDueDate,setTaskDueDate] = useState('')
 
+    function onAddTask() {
+        const newTask = {
+            name:taskName.trim(),
+            due_date:taskDueDate,
+            done:false
+        }
+        props.parentAddTask(newTask)
+        setTaskName('')
+    }
+
+
     return (
         <section className="container">
-            <pre>
-                {taskName}
-                {taskDueDate}
-            </pre>
+            
                 <div className="new_task">
                    
                     <label className="tasks" htmlFor="task-label"></label>
@@ -20,16 +32,27 @@ const SearchBar = () => {
                     <input type="text" 
                            className="task-control" 
                            value={taskName}
-                           onChange={ evento => setTaskName(evento.target.value)}
+                           onChange={ evento => {
+                                //evento target è il campo di input
+                                setTaskName(evento.target.value)
+                            }}
                            
                            name="tasks" 
                            id="tasks" 
                            placeholder="new task/search" 
                         />
 
-                    <button type="submit" className="task-button"><strong>Add</strong></button>
-                </div>
 
+                    <button type="submit"
+                            onClick={onAddTask} 
+                            disabled={!taskName.trim().length>0}
+                            className="task-button"
+                            ><strong>Add</strong>
+                    </button>
+                </div>
+                <div>
+                {!taskName.trim().length>0 ? 'Devi inserire un titolo':' '}
+                </div>
                 <div className="date">
                     
                     <input className="date-task"
