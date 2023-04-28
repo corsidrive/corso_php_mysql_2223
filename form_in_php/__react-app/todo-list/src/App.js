@@ -14,8 +14,10 @@ const [taskListData,setTaskListData] = useState([]);
 const [filtredTasks,setFiltredTask] = useState(taskListData);
 
 function parentAddTask(newTask){
+  console.log(newTask)
   const newTaskListData = addTask(newTask,taskListData)
   setTaskListData(newTaskListData)
+  setFiltredTask(newTaskListData)
 }
 
 function parentRemoveTask(taskId){
