@@ -4,7 +4,7 @@
 import { useState } from "react"
 
 
-function TaskItem({ nome_task, done,id,parentRemoveTask }){
+function TaskItem({ nome_task, done,id,parentRemoveTask ,parentUpdateTask}){
     const [doneCheckbox,setDoneCheckbox]=useState(done)
 
     function onRemoveTask(){
@@ -13,14 +13,15 @@ function TaskItem({ nome_task, done,id,parentRemoveTask }){
     }
 
     function onUpdateStatus(event) {
-            
+        console.log(event.target.checked)
+        setDoneCheckbox(event.target.checked)
         
     }
 
     return (
         <li className={done ? 'task_gia_fatta': ''}>
-            {doneCheckbox ? <h1>FATTO</h1> :  <h1>DA FARE</h1> }
-            <input onChange={(event)=>setDoneCheckbox(event.target.checked)}
+            
+            <input onChange={onUpdateStatus}
                    checked={doneCheckbox}
                   
                    type="checkbox" />
