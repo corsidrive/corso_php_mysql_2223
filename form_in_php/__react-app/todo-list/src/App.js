@@ -10,7 +10,15 @@ import { useState } from 'react';
 
 function App() {
 
-const [taskListData,setTaskListData] = useState([]);
+let tasklist = localStorage.getItem('tasklist')
+console.log("tasklist",);
+if(tasklist == null){
+      tasklist = [];
+}else{
+  tasklist = JSON.parse(tasklist)
+}
+
+const [taskListData,setTaskListData] = useState(tasklist);
 const [filtredTasks,setFiltredTask] = useState(taskListData);
 
 function parentAddTask(newTask){
@@ -18,17 +26,21 @@ function parentAddTask(newTask){
   const newTaskListData = addTask(newTask,taskListData)
   setTaskListData(newTaskListData)
   setFiltredTask(newTaskListData)
+
+  localStorage.setItem('tasklist',JSON.stringify(newTaskListData))
 }
 
 function parentRemoveTask(taskId){
       //  console.log("parentRemoveTask "+taskId)
        const res = removeTask(taskId,taskListData)
        setTaskListData(res)
+       localStorage.setItem('tasklist',JSON.stringify(res))
 }
 
 function parentUpdateTask(taskToUpdate) {
     const res = updateTask(taskToUpdate,taskListData)
     setTaskListData(res)
+    localStorage.setItem('tasklist',JSON.stringify(res))
 }
   
 function onShowCompleted() {
