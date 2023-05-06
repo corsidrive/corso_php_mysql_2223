@@ -58,3 +58,33 @@ export const completedFilter = todos => todos.filter(task => task.done)
 
 export const dateFilter = () => {}
 
+
+// const baseUrl = "https://mattiac.000webhostapp.com/rest_api/tasks.php";
+const baseUrl = "http://localhost/corso_php_mysql_2223/form_in_php/rest_api/tasks.php";
+// const baseUrl = "http://localhost/corso_php_mysql_2223/form_in_php/rest_api/users.php";
+// API
+
+export const getTasksApi = () => {
+    return fetch(baseUrl).then( res => res.json())
+}
+ 
+
+
+export const addTaskApi =  (newTask) => {
+    
+
+    let headersList = {
+        "Accept": "*/*",
+        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+        "Content-Type": "application/json"
+       }
+       
+    return fetch(baseUrl, { 
+         method: "POST",
+         body: JSON.stringify(newTask),
+         headers: headersList
+       }).then(response=>response.json());
+       
+       
+       
+}
